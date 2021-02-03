@@ -20,7 +20,57 @@ It should preserve capitalization, whitespace, and any special characters:
 
 def rot_encode(shift, txt):
     """Encode `txt` by shifting its characters to the right."""
+    txt = txt.lower()
+    
+    alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 
+    'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    cipher = {
+        'a': 'a',
+        'b': 'b',
+        'c': 'c',
+        'd': 'd',
+        'e': 'e',
+        'f': 'f',
+        'g': 'g',
+        'h': 'h',
+        'i': 'i',
+        'j': 'j',
+        'k': 'k',
+        'l': 'l',
+        'm': 'm',
+        'n': 'n',
+        'o': 'o',
+        'p': 'p',
+        'q': 'q',
+        'r': 'r',
+        's': 's',
+        't': 't',
+        'u': 'u',
+        'v': 'v',
+        'w': 'w',
+        'x': 'x',
+        'y': 'y',
+        'z': 'z'
+    }
 
+    start = 0
+    for char in cipher:
+        if shift < len(alpha):
+            cipher[char] = alpha[shift]
+            shift+= 1
+        if char == cipher[char]:
+            cipher[char] =  alpha[start]  
+            start+= 1    
+      
+
+    result = ''
+    for char in txt:
+        if char in cipher:
+            result = f'{result}{cipher[char]}'
+        else:    
+            result = f'{result}{char}'   
+
+    return result     
    
 
 
